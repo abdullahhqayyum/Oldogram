@@ -1,5 +1,120 @@
-html, body {
-    margin: 0;
-    padding: 0;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #f0f2f5; }
+
+.app-header {
+  padding: 1rem;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+#posts-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.post {
+  background: #fff;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+.post-header .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+}
+.post-header .username {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+.post-header .location {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.app-header .logo {
+  height: 32px;
+}
+.app-header .profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.actions .icon {
+  width: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.actions .icon:hover {
+  transform: scale(1.2);
+}
+
+.actions .icon + .icon {
+  margin-left: 0.75rem;
+}
+
+.post-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.post-footer {
+  padding-bottom: 0.75rem;
+}
+.actions {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem 0;
+}
+
+
+.likes, .caption {
+  padding: 0 1rem 0.5rem;
+  font-size: 0.9rem;
+}
+.caption strong {
+  margin-right: 0.3rem;
+}
+
+.icon.like {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  filter: none;
+}
+
+.icon.like:hover {
+  transform: scale(1.2);
+}
+
+.icon.like.liked {
+  filter:
+    brightness(0) 
+    saturate(100%) 
+    invert(22%) 
+    sepia(96%) 
+    saturate(2943%) 
+    hue-rotate(355deg) 
+    brightness(94%) 
+    contrast(101%);
 }
 
