@@ -3,7 +3,6 @@ const posts = [
     name:     "Vincent van Gogh",
     username: "vincey1853",
     location: "Zundert, Netherlands",
-    // ← now relative to the HTML file:
     avatar:   "images/avatar-vangogh.jpg",
     post:     "images/post-vangogh.jpg",
     comment:  "just took a few mushrooms lol",
@@ -33,7 +32,6 @@ const container = document.getElementById("posts-container");
 
 function renderPosts() {
   posts.forEach(post => {
-    // build post article
     const article = document.createElement("article");
     article.className = "post";
 
@@ -74,7 +72,6 @@ function renderPosts() {
 
     container.appendChild(article);
 
-    // like toggling
     const likeIcon = article.querySelector(".icon.like");
     const likesEl  = article.querySelector(".likes");
 
@@ -86,7 +83,6 @@ function renderPosts() {
       likeIcon.classList.toggle("liked", post._liked);
     });
 
-    // dblclick to like
     article.querySelector(".post-image img")
       .addEventListener("dblclick", () => {
         if (!post._liked) likeIcon.click();
