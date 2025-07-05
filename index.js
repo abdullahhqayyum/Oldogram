@@ -3,8 +3,9 @@ const posts = [
     name:     "Vincent van Gogh",
     username: "vincey1853",
     location: "Zundert, Netherlands",
-    avatar:   "/images/avatar-vangogh.jpg",
-    post:     "/images/post-vangogh.jpg",
+    // ← now relative to the HTML file:
+    avatar:   "images/avatar-vangogh.jpg",
+    post:     "images/post-vangogh.jpg",
     comment:  "just took a few mushrooms lol",
     likes:    21
   },
@@ -12,8 +13,8 @@ const posts = [
     name:     "Gustave Courbet",
     username: "gus1819",
     location: "Ornans, France",
-    avatar:   "/images/avatar-courbet.jpg",
-    post:     "/images/post-courbet.jpg",
+    avatar:   "images/avatar-courbet.jpg",
+    post:     "images/post-courbet.jpg",
     comment:  "i'm feelin a bit stressed tbh",
     likes:    4
   },
@@ -21,8 +22,8 @@ const posts = [
     name:     "Joseph Ducreux",
     username: "jd1735",
     location: "Paris, France",
-    avatar:   "/images/avatar-ducreux.jpg",
-    post:     "/images/post-ducreux.jpg",
+    avatar:   "images/avatar-ducreux.jpg",
+    post:     "images/post-ducreux.jpg",
     comment:  "gm friends! which coin are YOU stacking up today?? post below and WAGMI!",
     likes:    152
   }
@@ -32,8 +33,9 @@ const container = document.getElementById("posts-container");
 
 function renderPosts() {
   posts.forEach(post => {
+    // build post article
     const article = document.createElement("article");
-    article.classList.add("post");
+    article.className = "post";
 
     article.innerHTML = `
       <header class="post-header">
@@ -45,19 +47,21 @@ function renderPosts() {
           <p class="location">${post.location}</p>
         </div>
       </header>
+
       <figure class="post-image">
         <img src="${post.post}"
              alt="Artwork by ${post.username}">
       </figure>
+
       <footer class="post-footer">
         <nav class="actions">
-          <img src="/images/icon-heart.png"
+          <img src="images/icon-heart.png"
                alt="Like"
                class="icon like">
-          <img src="/images/icon-comment.png"
+          <img src="images/icon-comment.png"
                alt="Comment"
                class="icon comment">
-          <img src="/images/icon-dm.png"
+          <img src="images/icon-dm.png"
                alt="Direct Message"
                class="icon dm">
         </nav>
@@ -70,14 +74,11 @@ function renderPosts() {
 
     container.appendChild(article);
 
+    // like toggling
     const likeIcon = article.querySelector(".icon.like");
     const likesEl  = article.querySelector(".likes");
 
-    // initialize liked state
-    post._liked = post._liked || false;
-    likeIcon.classList.toggle("liked", post._liked);
-
-    // click to toggle like
+    post._liked = false;
     likeIcon.addEventListener("click", () => {
       post._liked = !post._liked;
       post.likes += post._liked ? 1 : -1;
@@ -85,11 +86,11 @@ function renderPosts() {
       likeIcon.classList.toggle("liked", post._liked);
     });
 
-    // dblclick image to like
-    const imgEl = article.querySelector(".post-image img");
-    imgEl.addEventListener("dblclick", () => {
-      if (!post._liked) likeIcon.click();
-    });
+    // dblclick to like
+    article.querySelector(".post-image img")
+      .addEventListener("dblclick", () => {
+        if (!post._liked) likeIcon.click();
+      });
   });
 }
 
